@@ -1,10 +1,10 @@
 import "./App.css";
-import UserInfoWithUseState from "./components/UserInfoWithUseState";
+import UserInfoWithUseReducer from "./components/UserInfoWithUseReducer";
 
 function App() {
   return (
     <div className="border border-purple-500 p-10 m-10">
-      <UserInfoWithUseState />
+      <UserInfoWithUseReducer />
     </div>
   );
 }

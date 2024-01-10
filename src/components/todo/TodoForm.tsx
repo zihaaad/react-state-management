@@ -2,8 +2,8 @@ import {useContext} from "react";
 import {TodoContext} from "../../context/TodoProvider";
 
 const TodoForm = () => {
-  const {todoTitle} = useContext(TodoContext);
-  console.log(todoTitle);
+  const {state, dispatch} = useContext(TodoContext);
+
   return (
     <div>
       <h1>This is a todo form component</h1>

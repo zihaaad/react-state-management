@@ -11,16 +11,29 @@ import {
 } from "@/components/ui/dialog";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
+import {addTodo} from "@/redux/features/todoSlice";
+import {useAppDispatch} from "@/redux/hook";
 import {FormEvent, useState} from "react";
 
 export function AddTodoModal() {
-  const [task, setTask] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const dispathch = useAppDispatch();
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    console.log({task, description});
+    const id = Math.random().toString(36).substring(2, 7);
+
+    const taskDetails = {
+      id,
+      title,
+      description,
+    };
+
+    dispathch(addTodo(taskDetails));
+    setTitle("");
+    setDescription("");
   };
   return (
     <Dialog>
@@ -43,7 +56,7 @@ export function AddTodoModal() {
                 Task
               </Label>
               <Input
-                onBlur={(e) => setTask(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 id="task"
                 name="task"
                 className="col-span-3"
@@ -54,7 +67,7 @@ export function AddTodoModal() {
                 Description
               </Label>
               <Input
-                onBlur={(e) => setDescription(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
                 id="description"
                 name="description"
                 className="col-span-3"

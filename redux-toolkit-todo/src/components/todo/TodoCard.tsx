@@ -1,15 +1,32 @@
+import {useAppDispatch} from "@/redux/hook";
 import {Button} from "../ui/button";
 import Checkbox from "../ui/checkbox";
+import {removeTodo, statusToggle} from "@/redux/features/todoSlice";
 
-const TodoCard = () => {
+type TTodoCardProps = {
+  id: string;
+  title: string;
+  description: string;
+  isCompleted?: boolean;
+};
+
+const TodoCard = ({id, title, description, isCompleted}: TTodoCardProps) => {
+  const dispathch = useAppDispatch();
+
   return (
     <div className="bg-white rounded-md flex justify-between items-center px-5 py-3 border">
-      <Checkbox />
-      <p className="font-semibold">Todo Title</p>
-      <p>Time</p>
-      <p>Description</p>
+      <Checkbox onCheckedChange={() => dispathch(statusToggle(id))} />
+      <p className="font-semibold">{title}</p>
+      <p>{description}</p>
+      <p>
+        {isCompleted ? (
+          <span className="text-green-500 font-semibold">Completed</span>
+        ) : (
+          <span className="text-red-500">In Progress</span>
+        )}
+      </p>
       <div className="space-x-5">
-        <Button variant="destructive">
+        <Button onClick={() => dispathch(removeTodo(id))} variant="destructive">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -1,15 +1,13 @@
-import {Button} from "../ui/button";
 import {AddTodoModal} from "./AddTodoModal";
 import TodoCard from "./TodoCard";
+import TodoFilter from "./TodoFilter";
 
 const TodoContainer = () => {
   return (
     <div className="space-y-5">
       <div className="flex justify-between">
         <AddTodoModal />
-        <Button variant="outline" className="shadow-inner">
-          FILTER
-        </Button>
+        <TodoFilter />
       </div>
       <div className="bg-primary-gradient w-full h-full rounded-xl p-[3px]">
         <div className="bg-white p-5 w-full h-full space-y-5 rounded-lg">

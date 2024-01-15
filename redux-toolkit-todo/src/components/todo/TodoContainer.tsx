@@ -1,10 +1,11 @@
-import {useAppSelector} from "@/redux/hook";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {AddTodoModal} from "./AddTodoModal";
 import TodoCard from "./TodoCard";
 import TodoFilter from "./TodoFilter";
+import {useGetTodosQuery} from "@/redux/api/api";
 
 const TodoContainer = () => {
-  const {todos} = useAppSelector((state) => state.todos);
+  const {data} = useGetTodosQuery(undefined);
   return (
     <div className="space-y-5">
       <div className="flex justify-between">
@@ -12,10 +13,10 @@ const TodoContainer = () => {
         <TodoFilter />
       </div>
       <div className="bg-primary-gradient w-full h-full rounded-xl p-[3px]">
-        {todos.length > 0 ? (
+        {data?.data?.length > 0 ? (
           <div className="bg-white p-5 w-full h-full space-y-5 rounded-lg">
-            {todos.map((todo) => (
-              <TodoCard key={todo.id} {...todo} />
+            {data?.data?.map((todo: any) => (
+              <TodoCard key={todo._id} {...todo} />
             ))}
           </div>
         ) : (

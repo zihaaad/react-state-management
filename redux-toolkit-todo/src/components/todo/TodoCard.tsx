@@ -6,11 +6,18 @@ import {removeTodo, statusToggle} from "@/redux/features/todoSlice";
 type TTodoCardProps = {
   id: string;
   title: string;
+  priority: string;
   description: string;
   isCompleted?: boolean;
 };
 
-const TodoCard = ({id, title, description, isCompleted}: TTodoCardProps) => {
+const TodoCard = ({
+  id,
+  title,
+  priority,
+  description,
+  isCompleted,
+}: TTodoCardProps) => {
   const dispathch = useAppDispatch();
 
   return (
@@ -18,6 +25,7 @@ const TodoCard = ({id, title, description, isCompleted}: TTodoCardProps) => {
       <Checkbox onCheckedChange={() => dispathch(statusToggle(id))} />
       <p className="font-semibold">{title}</p>
       <p>{description}</p>
+      <p>{priority}</p>
       <p>
         {isCompleted ? (
           <span className="text-green-500 font-semibold">Completed</span>

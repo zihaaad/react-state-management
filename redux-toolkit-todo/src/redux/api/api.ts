@@ -40,8 +40,21 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["todo"],
     }),
+    getSingleTodo: builder.query({
+      query: (id) => {
+        return {
+          url: `/task/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["todo"],
+    }),
   }),
 });
 
-export const {useGetTodosQuery, useAddTodoMutation, useUpdateTodoMutation} =
-  baseApi;
+export const {
+  useGetTodosQuery,
+  useGetSingleTodoQuery,
+  useAddTodoMutation,
+  useUpdateTodoMutation,
+} = baseApi;

@@ -21,7 +21,7 @@ const TodoCard = ({
   const dispathch = useAppDispatch();
 
   return (
-    <div className="bg-white rounded-md flex justify-between items-center px-5 py-3 border">
+    <div className="bg-white rounded-md border text-wrap flex items-center justify-between p-4">
       <Checkbox onCheckedChange={() => dispathch(statusToggle(id))} />
       <p className="font-semibold">{title}</p>
       <p>{description}</p>

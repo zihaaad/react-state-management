@@ -33,8 +33,6 @@ export function AddTodoModal() {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    // const id = Math.random().toString(36).substring(2, 7);
-
     const taskDetails = {
       title,
       isCompleted: false,

@@ -5,7 +5,7 @@ import TodoFilter from "./TodoFilter";
 import {useGetTodosQuery} from "@/redux/api/api";
 
 const TodoContainer = () => {
-  const {data} = useGetTodosQuery(undefined);
+  const {data} = useGetTodosQuery(undefined, {pollingInterval: 60000});
   return (
     <div className="space-y-5">
       <div className="flex justify-between">

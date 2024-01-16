@@ -1,4 +1,4 @@
-import {useUpdateTodoMutation} from "@/redux/api/api";
+import {useDeleteTodoMutation, useUpdateTodoMutation} from "@/redux/api/api";
 import {Button} from "../ui/button";
 import Checkbox from "../ui/checkbox";
 import {UpdateTodoModal} from "./UpdateTodoModal";
@@ -19,6 +19,7 @@ const TodoCard = ({
   isCompleted,
 }: TTodoCardProps) => {
   const [updateTodo] = useUpdateTodoMutation();
+  const [deleteTodo] = useDeleteTodoMutation();
   const toggleState = () => {
     const taskData = {
       title,
@@ -49,7 +50,7 @@ const TodoCard = ({
         )}
       </p>
       <div className="space-x-5">
-        <Button onClick={() => {}} variant="destructive">
+        <Button onClick={() => deleteTodo(_id)} variant="destructive">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

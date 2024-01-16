@@ -49,6 +49,15 @@ export const baseApi = createApi({
       },
       providesTags: ["todo"],
     }),
+    deleteTodo: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/task/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["todo"],
+    }),
   }),
 });
 
@@ -57,4 +66,5 @@ export const {
   useGetSingleTodoQuery,
   useAddTodoMutation,
   useUpdateTodoMutation,
+  useDeleteTodoMutation,
 } = baseApi;

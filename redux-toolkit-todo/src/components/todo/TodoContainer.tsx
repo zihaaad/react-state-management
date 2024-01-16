@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import {useState} from "react";
 import {AddTodoModal} from "./AddTodoModal";
 import TodoCard from "./TodoCard";
 import TodoFilter from "./TodoFilter";
 import {useGetTodosQuery} from "@/redux/api/api";
 
 const TodoContainer = () => {
-  const {data} = useGetTodosQuery(undefined, {pollingInterval: 60000});
+  const [priority, setPriority] = useState("");
+  const {data} = useGetTodosQuery(priority);
   return (
     <div className="space-y-5">
       <div className="flex justify-between">
         <AddTodoModal />
-        <TodoFilter />
+        <TodoFilter priority={priority} setPriority={setPriority} />
       </div>
       <div className="bg-primary-gradient w-full h-full rounded-xl p-[3px]">
         {data?.data?.length > 0 ? (

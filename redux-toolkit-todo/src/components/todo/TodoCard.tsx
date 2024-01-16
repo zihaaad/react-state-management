@@ -1,10 +1,9 @@
-import {useAppDispatch} from "@/redux/hook";
+import {useUpdateTodoMutation} from "@/redux/api/api";
 import {Button} from "../ui/button";
 import Checkbox from "../ui/checkbox";
-import {removeTodo, statusToggle} from "@/redux/features/todoSlice";
 
 type TTodoCardProps = {
-  id: string;
+  _id: string;
   title: string;
   priority: string;
   description: string;
@@ -12,17 +11,32 @@ type TTodoCardProps = {
 };
 
 const TodoCard = ({
-  id,
+  _id,
   title,
   priority,
   description,
   isCompleted,
 }: TTodoCardProps) => {
-  const dispathch = useAppDispatch();
+  const [updateTodo] = useUpdateTodoMutation();
+  const toggleState = () => {
+    const taskData = {
+      title,
+      description,
+      priority,
+      isCompleted: !isCompleted,
+    };
+
+    const options = {
+      id: _id,
+      data: taskData,
+    };
+
+    updateTodo(options);
+  };
 
   return (
     <div className="bg-white rounded-md border text-wrap flex items-center justify-between p-4">
-      <Checkbox onCheckedChange={() => dispathch(statusToggle(id))} />
+      <Checkbox defaultChecked={isCompleted} onCheckedChange={toggleState} />
       <p className="font-semibold">{title}</p>
       <p>{description}</p>
       <p>{priority}</p>
@@ -34,7 +48,7 @@ const TodoCard = ({
         )}
       </p>
       <div className="space-x-5">
-        <Button onClick={() => dispathch(removeTodo(id))} variant="destructive">
+        <Button onClick={() => {}} variant="destructive">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
